@@ -12,7 +12,7 @@
       <video id="video1" autoplay muted playsinline>
         <source src="videos/Beggining.mp4" type="video/mp4" />
       </video>
-      <video id="video2" muted loop playsinline preload="metadata">
+      <video id="video2" muted loop playsinline preload="none">
         <source src="videos/VideoLoop.mp4" type="video/mp4" />
       </video>
     </div>
@@ -251,12 +251,8 @@
       setArtistStatementVisibility(!isArtistStatementVisible);
     }
 
-    // Start loading overlay videos in the background as soon as Beggining.mp4 plays.
-    video1.addEventListener('play', () => {
-      startOverlayPreloadSequence();
-    }, { once: true });
-
     video1.addEventListener('ended', () => {
+      startOverlayPreloadSequence();
       video2.currentTime = 0;
       video2.classList.add('active');
       video2.play().catch(() => {});
