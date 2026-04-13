@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="video-background">
+    <video id="video1" autoplay muted playsinline>
+      <source src="videos/Beggining.mp4" type="video/mp4" />
+    </video>
+    <video id="video2" muted loop playsinline preload="auto">
+      <source src="videos/VideoLoop.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div id="overlay-video" class="hidden">
+    <div id="overlay-backdrop"></div>
+    <div class="text-stack">
+      <div class="text-box">
+        november, 2025.
+        mixed media, collage, video art, digital painting.
+      </div>
+      <div class="text-box-secondary">
+        An exploration of purpose. Communicating how much time and effort goes into the sense of meaningless. How little work it takes to have an idea. Confronting the concept of difficulty as a construct and proposing time as the only truth in this case. Avi Franklin-Casseres collaborating in sound.
+      </div>
+    </div>
+    <div class="text-box-artist-statement">
+      Using photos of facades of people and places, I create collages of scenery and characters. I piece together my scenes manually to express a range of thoughts and feelings. I use AI to animate parts, and compose everything manually. I decipher my feelings of the video into writings which explore world philosophy. Each video is an exercise of learning for me. I find comfort in communicating a larger idea into a visual form meaningful to anyone but myself. Leaving ‘thought’ to exist through this digital form of mockery and imagination, based on the unknown of our world. As an artist I am uncomfortable in knowingness. My videos explore fiction, but only through looking for ‘truth.’ It is the impossibility of finding truth that stretches my work further and further from a human perspective. I feel my humanity tested and at every step of being so close, and working so closely with these details of life, I can confront my perception and am left with nothing but questions.
+    </div>
+    <div id="videos-container">
+      <video id="forever-video" controls>
+        <source src="videos/Forever.mp4" type="video/mp4" />
+      </video>
+      <video id="babysitting-video" controls>
+        <source src="videos/Babysitting.mp4" type="video/mp4" />
+      </video>
+      <video id="superdeathforever-video" controls>
+        <source src="videos/SuperDeathForever.mp4" type="video/mp4" />
+      </video>
+      <video id="loveyourself-video" controls>
+        <source src="videos/LoveYourself.mp4" type="video/mp4" />
+      </video>
+      <video id="peoplepersons-video" controls>
+        <source src="videos/PeoplePersons.mp4" type="video/mp4" />
+      </video>
+      <video id="justpostcards-video" controls>
+        <source src="videos/JustPostCards.mp4" type="video/mp4" />
+      </video>
+      <video id="uniforming2-video" controls>
+        <source src="videos/Uniforming2.mp4" type="video/mp4" />
+      </video>
+      <video id="trainlove2-video" controls>
+        <source src="videos/TrainLove2.mp4" type="video/mp4" />
+      </video>
+      <video id="sorrpub-video" controls>
+        <source src="videos/SorryPub.mp4" type="video/mp4" />
+      </video>
+      <video id="aging-video" controls>
+        <source src="videos/Aging.mp4" type="video/mp4" />
+      </video>
+      <video id="lonelylady-video" controls>
+        <source src="videos/LonelyLadySheIs.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+  <script>
+    const video1 = document.getElementById('video1');
+    const video2 = document.getElementById('video2');
+    const overlay = document.getElementById('overlay-video');
+    const foreverVideo = document.getElementById('forever-video');
+    const babysittingVideo = document.getElementById('babysitting-video');
+    const superDeathForeverVideo = document.getElementById('superdeathforever-video');
+    const loveYourselfVideo = document.getElementById('loveyourself-video');
+    const peoplePersonsVideo = document.getElementById('peoplepersons-video');
+    const justPostCardsVideo = document.getElementById('justpostcards-video');
+    const uniforming2Video = document.getElementById('uniforming2-video');
+    const trainLove2Video = document.getElementById('trainlove2-video');
+    const sorryPubVideo = document.getElementById('sorrpub-video');
+    const agingVideo = document.getElementById('aging-video');
+    const lonelyLadyVideo = document.getElementById('lonelylady-video');
+    const textBox = document.querySelector('.text-box');
+    const secondaryTextBox = document.querySelector('.text-box-secondary');
+    const artistStatementBox = document.querySelector('.text-box-artist-statement');
+
+    const novemberText = 'november, 2025.\nmixed media, collage, video art, digital painting.';
+    const augustText = 'august, 2025.\nmixed media, digital photography, collage, video art, digital painting, watercolour.';
+    const marchText = 'march, 2026.\nmixed media, digital photography, collage, video art, digital painting.';
+    const aprilText = 'april, 2026.\nmixed media, collage, video art, digital painting.';
+    const septemberText = 'september, 2025.\nmixed media, digital photography, collage, video art, digital painting.';
+    const octoberText = 'october, 2025.\nmixed media, digital photography, collage, video art, digital painting, graphite/pencil.';
+    const februaryText = 'february, 2026.\nmixed media, digital photography, collage, video art, digital painting.';
+    const decemberText = 'december, 2025.\nmixed media, collage, video art, digital painting.';
+    const julyText = 'july, 2025.\nmixed media, digital photography, collage, video art.';
+    const agingAugustText = 'august, 2025.\nmixed media, digital photography, collage, video art, digital painting.';
+    const juneText = 'june, 2025.\nmixed media, digital photography, collage, video art.';
+    const secondaryDefaultText = 'An exploration of purpose. Communicating how much time and effort goes into the sense of meaningless. How little work it takes to have an idea. Confronting the concept of difficulty as a construct and proposing time as the only truth in this case. Avi Franklin-Casseres collaborating in sound.';
+    const secondaryBabysittingText = 'An introspective about the wonder we lose as we age. Excepting our perception as reality, when in reality we just don\'t know. Through the ignorant youth trope, I hope to highlight the ignorance of acceptance and conclude there\'s much more to life.';
+    const secondarySuperDeathText = 'A combative piece, arguing with unavoidable loss, and doing sad things to cope with sad things. At the same time, I show our dead relatives are with us in our existence, the magic of life we are taught to ignore, the value in having no wants, and how changing in our perception everything can be important and beautiful. Avi Franklin-Casseres, Collaborating Soundtrack.';
+    const secondaryLoveYourselfText = 'A collaborative scene for Worldpeace DMT and Rowan Please with director Thomas Connally. I was given freedom of character and scene design of the outro scene, contributing characters and props that aligned with the vision of the band and director. I animated and composed the characters for the final edit by Dave Davis.';
+    const secondaryPeoplePersonsText = 'A piece about circumstance and change and our differences. The gift of change that allows us to be different and coming to grips with the influence of circumstance. A conclusion in finding that your path is valuable because of all the endless possibilities that didn\'t for you to be where you are now.';
+    const secondaryJustPostCardsText = 'A collaborative project with Berlin artist Regina Kelaita. Using street and stop motion photographs from Berlin by Regina, I compiled an atmosphere. Regina\'s work along with my photos and drawings to create post cards, the video discusses physical distance and the feeling of distance when close to people. ';
+    const secondaryUniforming2Text = 'An explanatory teaser to communicate the values and intentions of Uniform–a bi-yearly live event that fosters communicating, a shared communication language of design and artistry. The video highlights identity amongst a bigger, shared purpose, promoting individuality through togetherness.';
+    const secondaryTrainLove2Text = 'A time sensitive arrival at the social complexities of events and shared time together. All differentiating experiences that can come from a singular catalyst. So many emotions, reminders, love and unlove that these recurring events mark.';
+    const secondarySorryPubText = 'A reminder of the gift that boredom is, exaggerating that without boredom we would be nobody’s, and imposing the impossibility of ‘will’ without boredom.This project features styling from Matthew Van Dystadt-Aguiar of Scumrags and Ivan Bublik, with visual effects by Ned Smith.';
+    const secondaryAgingText = 'A mourning of the fleeting. This short video exclaims a heedless longing for a heedlessness that doesn\'t allow awareness when it comes to time passing. Wrapped up in thoughts from care, we will only age more.';
+    const secondaryLonelyLadyText = 'A first of my experimental process that confronts the helplessness of indifference that leads to an urge for opinion, unsure truth and pretending of the truth until it becomes the truth.';
+
+    let currentTextBody = 'november';
+    let currentSecondaryTextBody = 'default';
+    let previousBabysittingMidpointRelation = null;
+    let previousSecondaryBabysittingMidpointRelation = null;
+    let previousSecondarySuperDeathMidpointRelation = null;
+    let previousSecondaryLoveYourselfMidpointRelation = null;
+    let previousSecondaryPeoplePersonsMidpointRelation = null;
+    let previousSecondaryJustPostCardsMidpointRelation = null;
+    let previousSecondaryUniforming2MidpointRelation = null;
+    let previousSecondaryTrainLove2MidpointRelation = null;
+    let previousSecondarySorryPubMidpointRelation = null;
+    let previousSecondaryAgingMidpointRelation = null;
+    let previousSecondaryLonelyLadyMidpointRelation = null;
+    let previousArtistStatementForeverMidpointRelation = null;
+    let previousSuperDeathMidpointRelation = null;
+    let previousLoveYourselfMidpointRelation = null;
+    let previousPeoplePersonsMidpointRelation = null;
+    let previousJustPostCardsMidpointRelation = null;
+    let previousUniforming2MidpointRelation = null;
+    let previousTrainLove2MidpointRelation = null;
+    let previousSorryPubMidpointRelation = null;
+    let previousAgingMidpointRelation = null;
+    let previousLonelyLadyMidpointRelation = null;
+    let isArtistStatementVisible = true;
+
+    function setArtistStatementVisibility(isVisible) {
+      isArtistStatementVisible = isVisible;
+      artistStatementBox.style.visibility = isVisible ? 'visible' : 'hidden';
+      artistStatementBox.style.opacity = isVisible ? '1' : '0';
+    }
+
+    function toggleArtistStatementOnForeverCross() {
+      setArtistStatementVisibility(!isArtistStatementVisible);
+    }
+
+    video1.addEventListener('ended', () => {
+      video2.currentTime = 0;
+      video2.classList.add('active');
+      video2.play().catch(() => {});
+      video1.classList.add('hidden');
+    });
+
+    document.body.addEventListener('click', () => {
+      // Only allow clicking if 20+ seconds into Beginning.mp4 or if on the loop
+      if (video1.currentTime >= 20 || video2.classList.contains('active')) {
+        if (overlay.style.display !== 'block') {
+          overlay.style.display = 'block';
+          overlay.classList.add('visible');
+          foreverVideo.play().catch(() => {});
+        }
+      }
+    });
+
+    const videosContainer = document.getElementById('videos-container');
+    let horizontalOffset = 0;
+
+    function applyTextBody(textBodyName) {
+      currentTextBody = textBodyName;
+
+      if (textBodyName === 'june') {
+        textBox.textContent = juneText;
+        return;
+      }
+
+      if (textBodyName === 'agingAugust') {
+        textBox.textContent = agingAugustText;
+        return;
+      }
+
+      if (textBodyName === 'july') {
+        textBox.textContent = julyText;
+        return;
+      }
+
+      if (textBodyName === 'december') {
+        textBox.textContent = decemberText;
+        return;
+      }
+
+      if (textBodyName === 'february') {
+        textBox.textContent = februaryText;
+        return;
+      }
+
+      if (textBodyName === 'october') {
+        textBox.textContent = octoberText;
+        return;
+      }
+
+      if (textBodyName === 'september') {
+        textBox.textContent = septemberText;
+        return;
+      }
+
+      if (textBodyName === 'april') {
+        textBox.textContent = aprilText;
+        return;
+      }
+
+      if (textBodyName === 'march') {
+        textBox.textContent = marchText;
+        return;
+      }
+
+      if (textBodyName === 'august') {
+        textBox.textContent = augustText;
+        return;
+      }
+
+      textBox.textContent = novemberText;
+    }
+
+    function applySecondaryTextBody(textBodyName) {
+      currentSecondaryTextBody = textBodyName;
+
+      if (textBodyName === 'lonelylady') {
+        secondaryTextBox.textContent = secondaryLonelyLadyText;
+        return;
+      }
+
+      if (textBodyName === 'aging') {
+        secondaryTextBox.textContent = secondaryAgingText;
+        return;
+      }
+
+      if (textBodyName === 'sorrypub') {
+        secondaryTextBox.textContent = secondarySorryPubText;
+        return;
+      }
+
+      if (textBodyName === 'trainlove2') {
+        secondaryTextBox.textContent = secondaryTrainLove2Text;
+        return;
+      }
+
+      if (textBodyName === 'uniforming2') {
+        secondaryTextBox.textContent = secondaryUniforming2Text;
+        return;
+      }
+
+      if (textBodyName === 'justpostcards') {
+        secondaryTextBox.textContent = secondaryJustPostCardsText;
+        return;
+      }
+
+      if (textBodyName === 'peoplepersons') {
+        secondaryTextBox.textContent = secondaryPeoplePersonsText;
+        return;
+      }
+
+      if (textBodyName === 'loveyourself') {
+        secondaryTextBox.textContent = secondaryLoveYourselfText;
+        return;
+      }
+
+      if (textBodyName === 'superdeath') {
+        secondaryTextBox.textContent = secondarySuperDeathText;
+        return;
+      }
+
+      if (textBodyName === 'babysitting') {
+        secondaryTextBox.textContent = secondaryBabysittingText;
+        return;
+      }
+
+      secondaryTextBox.textContent = secondaryDefaultText;
+    }
+
+    const allOverlayVideos = [
+      foreverVideo, babysittingVideo, superDeathForeverVideo, loveYourselfVideo,
+      peoplePersonsVideo, justPostCardsVideo, uniforming2Video, trainLove2Video,
+      sorryPubVideo, agingVideo, lonelyLadyVideo
+    ];
+
+    function pauseOtherVideos(exceptVideo) {
+      allOverlayVideos.forEach(v => {
+        if (v !== exceptVideo && !v.paused) {
+          v.pause();
+        }
+      });
+    }
+
+    function toggleTextBodyOnBabysittingCross() {
+      const nextTextBody = currentTextBody === 'august' ? 'november' : 'august';
+      applyTextBody(nextTextBody);
+      pauseOtherVideos(babysittingVideo);
+    }
+
+    function toggleSecondaryTextBodyOnBabysittingCross() {
+      const nextTextBody = currentSecondaryTextBody === 'babysitting' ? 'default' : 'babysitting';
+      applySecondaryTextBody(nextTextBody);
+    }
+
+    function toggleSecondaryTextBodyOnSuperDeathCross() {
+      const nextTextBody = currentSecondaryTextBody === 'superdeath' ? 'babysitting' : 'superdeath';
+      applySecondaryTextBody(nextTextBody);
+    }
+
+    function toggleSecondaryTextBodyOnLoveYourselfCross() {
+      const nextTextBody = currentSecondaryTextBody === 'loveyourself' ? 'superdeath' : 'loveyourself';
+      applySecondaryTextBody(nextTextBody);
+    }
+
+    function toggleSecondaryTextBodyOnPeoplePersonsCross() {
+      const nextTextBody = currentSecondaryTextBody === 'peoplepersons' ? 'loveyourself' : 'peoplepersons';
+      applySecondaryTextBody(nextTextBody);
+    }
+
+    function toggleSecondaryTextBodyOnJustPostCardsCross() {
+      const nextTextBody = currentSecondaryTextBody === 'justpostcards' ? 'peoplepersons' : 'justpostcards';
+      applySecondaryTextBody(nextTextBody);
+    }
+
+    function toggleSecondaryTextBodyOnUniforming2Cross() {
+      const nextTextBody = currentSecondaryTextBody === 'uniforming2' ? 'justpostcards' : 'uniforming2';
+      applySecondaryTextBody(nextTextBody);
+    }
+
+    function toggleSecondaryTextBodyOnTrainLove2Cross() {
+      const nextTextBody = currentSecondaryTextBody === 'trainlove2' ? 'uniforming2' : 'trainlove2';
+      applySecondaryTextBody(nextTextBody);
+    }
+
+    function toggleSecondaryTextBodyOnSorryPubCross() {
+      const nextTextBody = currentSecondaryTextBody === 'sorrypub' ? 'trainlove2' : 'sorrypub';
+      applySecondaryTextBody(nextTextBody);
+    }
+
+    function toggleSecondaryTextBodyOnAgingCross() {
+      const nextTextBody = currentSecondaryTextBody === 'aging' ? 'sorrypub' : 'aging';
+      applySecondaryTextBody(nextTextBody);
+    }
+
+    function toggleSecondaryTextBodyOnLonelyLadyCross() {
+      const nextTextBody = currentSecondaryTextBody === 'lonelylady' ? 'aging' : 'lonelylady';
+      applySecondaryTextBody(nextTextBody);
+    }
+
+    function toggleTextBodyOnSuperDeathCross() {
+      const nextTextBody = currentTextBody === 'march' ? 'august' : 'march';
+      applyTextBody(nextTextBody);
+      pauseOtherVideos(superDeathForeverVideo);
+    }
+
+    function toggleTextBodyOnLoveYourselfCross() {
+      const nextTextBody = currentTextBody === 'april' ? 'march' : 'april';
+      applyTextBody(nextTextBody);
+      pauseOtherVideos(loveYourselfVideo);
+    }
+
+    function toggleTextBodyOnPeoplePersonsCross() {
+      const nextTextBody = currentTextBody === 'september' ? 'april' : 'september';
+      applyTextBody(nextTextBody);
+      pauseOtherVideos(peoplePersonsVideo);
+    }
+
+    function toggleTextBodyOnJustPostCardsCross() {
+      const nextTextBody = currentTextBody === 'october' ? 'september' : 'october';
+      applyTextBody(nextTextBody);
+      pauseOtherVideos(justPostCardsVideo);
+    }
+
+    function toggleTextBodyOnUniforming2Cross() {
+      const nextTextBody = currentTextBody === 'february' ? 'october' : 'february';
+      applyTextBody(nextTextBody);
+      pauseOtherVideos(uniforming2Video);
+    }
+
+    function toggleTextBodyOnTrainLove2Cross() {
+      const nextTextBody = currentTextBody === 'december' ? 'february' : 'december';
+      applyTextBody(nextTextBody);
+      pauseOtherVideos(trainLove2Video);
+    }
+
+    function toggleTextBodyOnSorryPubCross() {
+      const nextTextBody = currentTextBody === 'july' ? 'december' : 'july';
+      applyTextBody(nextTextBody);
+      pauseOtherVideos(sorryPubVideo);
+    }
+
+    function toggleTextBodyOnAgingCross() {
+      const nextTextBody = currentTextBody === 'agingAugust' ? 'july' : 'agingAugust';
+      applyTextBody(nextTextBody);
+      pauseOtherVideos(agingVideo);
+    }
+
+    function toggleTextBodyOnLonelyLadyCross() {
+      const nextTextBody = currentTextBody === 'june' ? 'agingAugust' : 'june';
+      applyTextBody(nextTextBody);
+      pauseOtherVideos(lonelyLadyVideo);
+    }
+
+    function updateTextOnBabysittingMidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousBabysittingMidpointRelation = null;
+        return;
+      }
+
+      const textRect = textBox.getBoundingClientRect();
+      const babysittingRect = babysittingVideo.getBoundingClientRect();
+
+      if (textRect.width === 0 || babysittingRect.width === 0) {
+        return;
+      }
+
+      const textMidpointX = textRect.left + (textRect.width / 2);
+      const babysittingMidpointX = babysittingRect.left + (babysittingRect.width / 2);
+      const midpointRelation = babysittingMidpointX - textMidpointX;
+
+      if (previousBabysittingMidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousBabysittingMidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousBabysittingMidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleTextBodyOnBabysittingCross();
+        }
+      }
+
+      previousBabysittingMidpointRelation = midpointRelation;
+    }
+
+    function updateArtistStatementOnForeverMidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousArtistStatementForeverMidpointRelation = null;
+        return;
+      }
+
+      const artistStatementRect = artistStatementBox.getBoundingClientRect();
+      const foreverRect = foreverVideo.getBoundingClientRect();
+
+      if (artistStatementRect.width === 0 || foreverRect.width === 0) {
+        return;
+      }
+
+      const artistStatementMidpointX = artistStatementRect.left + (artistStatementRect.width / 2);
+      const foreverMidpointX = foreverRect.left + (foreverRect.width / 2);
+      const midpointRelation = foreverMidpointX - artistStatementMidpointX;
+
+      if (previousArtistStatementForeverMidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousArtistStatementForeverMidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousArtistStatementForeverMidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleArtistStatementOnForeverCross();
+        }
+      }
+
+      previousArtistStatementForeverMidpointRelation = midpointRelation;
+    }
+
+    function updateSecondaryTextOnBabysittingMidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousSecondaryBabysittingMidpointRelation = null;
+        return;
+      }
+
+      const secondaryTextRect = secondaryTextBox.getBoundingClientRect();
+      const babysittingRect = babysittingVideo.getBoundingClientRect();
+
+      if (secondaryTextRect.width === 0 || babysittingRect.width === 0) {
+        return;
+      }
+
+      const secondaryTextMidpointX = secondaryTextRect.left + (secondaryTextRect.width / 2);
+      const babysittingMidpointX = babysittingRect.left + (babysittingRect.width / 2);
+      const midpointRelation = babysittingMidpointX - secondaryTextMidpointX;
+
+      if (previousSecondaryBabysittingMidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousSecondaryBabysittingMidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousSecondaryBabysittingMidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleSecondaryTextBodyOnBabysittingCross();
+        }
+      }
+
+      previousSecondaryBabysittingMidpointRelation = midpointRelation;
+    }
+
+    function updateTextOnSuperDeathMidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousSuperDeathMidpointRelation = null;
+        return;
+      }
+
+      const textRect = textBox.getBoundingClientRect();
+      const superDeathRect = superDeathForeverVideo.getBoundingClientRect();
+
+      if (textRect.width === 0 || superDeathRect.width === 0) {
+        return;
+      }
+
+      const textMidpointX = textRect.left + (textRect.width / 2);
+      const superDeathMidpointX = superDeathRect.left + (superDeathRect.width / 2);
+      const midpointRelation = superDeathMidpointX - textMidpointX;
+
+      if (previousSuperDeathMidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousSuperDeathMidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousSuperDeathMidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleTextBodyOnSuperDeathCross();
+        }
+      }
+
+      previousSuperDeathMidpointRelation = midpointRelation;
+    }
+
+    function updateSecondaryTextOnSuperDeathMidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousSecondarySuperDeathMidpointRelation = null;
+        return;
+      }
+
+      const secondaryTextRect = secondaryTextBox.getBoundingClientRect();
+      const superDeathRect = superDeathForeverVideo.getBoundingClientRect();
+
+      if (secondaryTextRect.width === 0 || superDeathRect.width === 0) {
+        return;
+      }
+
+      const secondaryTextMidpointX = secondaryTextRect.left + (secondaryTextRect.width / 2);
+      const superDeathMidpointX = superDeathRect.left + (superDeathRect.width / 2);
+      const midpointRelation = superDeathMidpointX - secondaryTextMidpointX;
+
+      if (previousSecondarySuperDeathMidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousSecondarySuperDeathMidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousSecondarySuperDeathMidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleSecondaryTextBodyOnSuperDeathCross();
+        }
+      }
+
+      previousSecondarySuperDeathMidpointRelation = midpointRelation;
+    }
+
+    function updateTextOnLoveYourselfMidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousLoveYourselfMidpointRelation = null;
+        return;
+      }
+
+      const textRect = textBox.getBoundingClientRect();
+      const loveYourselfRect = loveYourselfVideo.getBoundingClientRect();
+
+      if (textRect.width === 0 || loveYourselfRect.width === 0) {
+        return;
+      }
+
+      const textMidpointX = textRect.left + (textRect.width / 2);
+      const loveYourselfMidpointX = loveYourselfRect.left + (loveYourselfRect.width / 2);
+      const midpointRelation = loveYourselfMidpointX - textMidpointX;
+
+      if (previousLoveYourselfMidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousLoveYourselfMidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousLoveYourselfMidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleTextBodyOnLoveYourselfCross();
+        }
+      }
+
+      previousLoveYourselfMidpointRelation = midpointRelation;
+    }
+
+    function updateSecondaryTextOnLoveYourselfMidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousSecondaryLoveYourselfMidpointRelation = null;
+        return;
+      }
+
+      const secondaryTextRect = secondaryTextBox.getBoundingClientRect();
+      const loveYourselfRect = loveYourselfVideo.getBoundingClientRect();
+
+      if (secondaryTextRect.width === 0 || loveYourselfRect.width === 0) {
+        return;
+      }
+
+      const secondaryTextMidpointX = secondaryTextRect.left + (secondaryTextRect.width / 2);
+      const loveYourselfMidpointX = loveYourselfRect.left + (loveYourselfRect.width / 2);
+      const midpointRelation = loveYourselfMidpointX - secondaryTextMidpointX;
+
+      if (previousSecondaryLoveYourselfMidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousSecondaryLoveYourselfMidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousSecondaryLoveYourselfMidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleSecondaryTextBodyOnLoveYourselfCross();
+        }
+      }
+
+      previousSecondaryLoveYourselfMidpointRelation = midpointRelation;
+    }
+
+    function updateTextOnPeoplePersonsMidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousPeoplePersonsMidpointRelation = null;
+        return;
+      }
+
+      const textRect = textBox.getBoundingClientRect();
+      const peoplePersonsRect = peoplePersonsVideo.getBoundingClientRect();
+
+      if (textRect.width === 0 || peoplePersonsRect.width === 0) {
+        return;
+      }
+
+      const textMidpointX = textRect.left + (textRect.width / 2);
+      const peoplePersonsMidpointX = peoplePersonsRect.left + (peoplePersonsRect.width / 2);
+      const midpointRelation = peoplePersonsMidpointX - textMidpointX;
+
+      if (previousPeoplePersonsMidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousPeoplePersonsMidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousPeoplePersonsMidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleTextBodyOnPeoplePersonsCross();
+        }
+      }
+
+      previousPeoplePersonsMidpointRelation = midpointRelation;
+    }
+
+    function updateSecondaryTextOnPeoplePersonsMidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousSecondaryPeoplePersonsMidpointRelation = null;
+        return;
+      }
+
+      const secondaryTextRect = secondaryTextBox.getBoundingClientRect();
+      const peoplePersonsRect = peoplePersonsVideo.getBoundingClientRect();
+
+      if (secondaryTextRect.width === 0 || peoplePersonsRect.width === 0) {
+        return;
+      }
+
+      const secondaryTextMidpointX = secondaryTextRect.left + (secondaryTextRect.width / 2);
+      const peoplePersonsMidpointX = peoplePersonsRect.left + (peoplePersonsRect.width / 2);
+      const midpointRelation = peoplePersonsMidpointX - secondaryTextMidpointX;
+
+      if (previousSecondaryPeoplePersonsMidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousSecondaryPeoplePersonsMidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousSecondaryPeoplePersonsMidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleSecondaryTextBodyOnPeoplePersonsCross();
+        }
+      }
+
+      previousSecondaryPeoplePersonsMidpointRelation = midpointRelation;
+    }
+
+    function updateTextOnJustPostCardsMidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousJustPostCardsMidpointRelation = null;
+        return;
+      }
+
+      const textRect = textBox.getBoundingClientRect();
+      const justPostCardsRect = justPostCardsVideo.getBoundingClientRect();
+
+      if (textRect.width === 0 || justPostCardsRect.width === 0) {
+        return;
+      }
+
+      const textMidpointX = textRect.left + (textRect.width / 2);
+      const justPostCardsMidpointX = justPostCardsRect.left + (justPostCardsRect.width / 2);
+      const midpointRelation = justPostCardsMidpointX - textMidpointX;
+
+      if (previousJustPostCardsMidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousJustPostCardsMidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousJustPostCardsMidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleTextBodyOnJustPostCardsCross();
+        }
+      }
+
+      previousJustPostCardsMidpointRelation = midpointRelation;
+    }
+
+    function updateSecondaryTextOnJustPostCardsMidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousSecondaryJustPostCardsMidpointRelation = null;
+        return;
+      }
+
+      const secondaryTextRect = secondaryTextBox.getBoundingClientRect();
+      const justPostCardsRect = justPostCardsVideo.getBoundingClientRect();
+
+      if (secondaryTextRect.width === 0 || justPostCardsRect.width === 0) {
+        return;
+      }
+
+      const secondaryTextMidpointX = secondaryTextRect.left + (secondaryTextRect.width / 2);
+      const justPostCardsMidpointX = justPostCardsRect.left + (justPostCardsRect.width / 2);
+      const midpointRelation = justPostCardsMidpointX - secondaryTextMidpointX;
+
+      if (previousSecondaryJustPostCardsMidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousSecondaryJustPostCardsMidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousSecondaryJustPostCardsMidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleSecondaryTextBodyOnJustPostCardsCross();
+        }
+      }
+
+      previousSecondaryJustPostCardsMidpointRelation = midpointRelation;
+    }
+
+    function updateTextOnUniforming2MidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousUniforming2MidpointRelation = null;
+        return;
+      }
+
+      const textRect = textBox.getBoundingClientRect();
+      const uniforming2Rect = uniforming2Video.getBoundingClientRect();
+
+      if (textRect.width === 0 || uniforming2Rect.width === 0) {
+        return;
+      }
+
+      const textMidpointX = textRect.left + (textRect.width / 2);
+      const uniforming2MidpointX = uniforming2Rect.left + (uniforming2Rect.width / 2);
+      const midpointRelation = uniforming2MidpointX - textMidpointX;
+
+      if (previousUniforming2MidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousUniforming2MidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousUniforming2MidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleTextBodyOnUniforming2Cross();
+        }
+      }
+
+      previousUniforming2MidpointRelation = midpointRelation;
+    }
+
+    function updateSecondaryTextOnUniforming2MidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousSecondaryUniforming2MidpointRelation = null;
+        return;
+      }
+
+      const secondaryTextRect = secondaryTextBox.getBoundingClientRect();
+      const uniforming2Rect = uniforming2Video.getBoundingClientRect();
+
+      if (secondaryTextRect.width === 0 || uniforming2Rect.width === 0) {
+        return;
+      }
+
+      const secondaryTextMidpointX = secondaryTextRect.left + (secondaryTextRect.width / 2);
+      const uniforming2MidpointX = uniforming2Rect.left + (uniforming2Rect.width / 2);
+      const midpointRelation = uniforming2MidpointX - secondaryTextMidpointX;
+
+      if (previousSecondaryUniforming2MidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousSecondaryUniforming2MidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousSecondaryUniforming2MidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleSecondaryTextBodyOnUniforming2Cross();
+        }
+      }
+
+      previousSecondaryUniforming2MidpointRelation = midpointRelation;
+    }
+
+    function updateTextOnTrainLove2MidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousTrainLove2MidpointRelation = null;
+        return;
+      }
+
+      const textRect = textBox.getBoundingClientRect();
+      const trainLove2Rect = trainLove2Video.getBoundingClientRect();
+
+      if (textRect.width === 0 || trainLove2Rect.width === 0) {
+        return;
+      }
+
+      const textMidpointX = textRect.left + (textRect.width / 2);
+      const trainLove2MidpointX = trainLove2Rect.left + (trainLove2Rect.width / 2);
+      const midpointRelation = trainLove2MidpointX - textMidpointX;
+
+      if (previousTrainLove2MidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousTrainLove2MidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousTrainLove2MidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleTextBodyOnTrainLove2Cross();
+        }
+      }
+
+      previousTrainLove2MidpointRelation = midpointRelation;
+    }
+
+    function updateSecondaryTextOnTrainLove2MidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousSecondaryTrainLove2MidpointRelation = null;
+        return;
+      }
+
+      const secondaryTextRect = secondaryTextBox.getBoundingClientRect();
+      const trainLove2Rect = trainLove2Video.getBoundingClientRect();
+
+      if (secondaryTextRect.width === 0 || trainLove2Rect.width === 0) {
+        return;
+      }
+
+      const secondaryTextMidpointX = secondaryTextRect.left + (secondaryTextRect.width / 2);
+      const trainLove2MidpointX = trainLove2Rect.left + (trainLove2Rect.width / 2);
+      const midpointRelation = trainLove2MidpointX - secondaryTextMidpointX;
+
+      if (previousSecondaryTrainLove2MidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousSecondaryTrainLove2MidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousSecondaryTrainLove2MidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleSecondaryTextBodyOnTrainLove2Cross();
+        }
+      }
+
+      previousSecondaryTrainLove2MidpointRelation = midpointRelation;
+    }
+
+    function updateTextOnSorryPubMidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousSorryPubMidpointRelation = null;
+        return;
+      }
+
+      const textRect = textBox.getBoundingClientRect();
+      const sorryPubRect = sorryPubVideo.getBoundingClientRect();
+
+      if (textRect.width === 0 || sorryPubRect.width === 0) {
+        return;
+      }
+
+      const textMidpointX = textRect.left + (textRect.width / 2);
+      const sorryPubMidpointX = sorryPubRect.left + (sorryPubRect.width / 2);
+      const midpointRelation = sorryPubMidpointX - textMidpointX;
+
+      if (previousSorryPubMidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousSorryPubMidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousSorryPubMidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleTextBodyOnSorryPubCross();
+        }
+      }
+
+      previousSorryPubMidpointRelation = midpointRelation;
+    }
+
+    function updateSecondaryTextOnSorryPubMidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousSecondarySorryPubMidpointRelation = null;
+        return;
+      }
+
+      const secondaryTextRect = secondaryTextBox.getBoundingClientRect();
+      const sorryPubRect = sorryPubVideo.getBoundingClientRect();
+
+      if (secondaryTextRect.width === 0 || sorryPubRect.width === 0) {
+        return;
+      }
+
+      const secondaryTextMidpointX = secondaryTextRect.left + (secondaryTextRect.width / 2);
+      const sorryPubMidpointX = sorryPubRect.left + (sorryPubRect.width / 2);
+      const midpointRelation = sorryPubMidpointX - secondaryTextMidpointX;
+
+      if (previousSecondarySorryPubMidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousSecondarySorryPubMidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousSecondarySorryPubMidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleSecondaryTextBodyOnSorryPubCross();
+        }
+      }
+
+      previousSecondarySorryPubMidpointRelation = midpointRelation;
+    }
+
+    function updateTextOnAgingMidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousAgingMidpointRelation = null;
+        return;
+      }
+
+      const textRect = textBox.getBoundingClientRect();
+      const agingRect = agingVideo.getBoundingClientRect();
+
+      if (textRect.width === 0 || agingRect.width === 0) {
+        return;
+      }
+
+      const textMidpointX = textRect.left + (textRect.width / 2);
+      const agingMidpointX = agingRect.left + (agingRect.width / 2);
+      const midpointRelation = agingMidpointX - textMidpointX;
+
+      if (previousAgingMidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousAgingMidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousAgingMidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleTextBodyOnAgingCross();
+        }
+      }
+
+      previousAgingMidpointRelation = midpointRelation;
+    }
+
+    function updateSecondaryTextOnAgingMidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousSecondaryAgingMidpointRelation = null;
+        return;
+      }
+
+      const secondaryTextRect = secondaryTextBox.getBoundingClientRect();
+      const agingRect = agingVideo.getBoundingClientRect();
+
+      if (secondaryTextRect.width === 0 || agingRect.width === 0) {
+        return;
+      }
+
+      const secondaryTextMidpointX = secondaryTextRect.left + (secondaryTextRect.width / 2);
+      const agingMidpointX = agingRect.left + (agingRect.width / 2);
+      const midpointRelation = agingMidpointX - secondaryTextMidpointX;
+
+      if (previousSecondaryAgingMidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousSecondaryAgingMidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousSecondaryAgingMidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleSecondaryTextBodyOnAgingCross();
+        }
+      }
+
+      previousSecondaryAgingMidpointRelation = midpointRelation;
+    }
+
+    function updateTextOnLonelyLadyMidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousLonelyLadyMidpointRelation = null;
+        return;
+      }
+
+      const textRect = textBox.getBoundingClientRect();
+      const lonelyLadyRect = lonelyLadyVideo.getBoundingClientRect();
+
+      if (textRect.width === 0 || lonelyLadyRect.width === 0) {
+        return;
+      }
+
+      const textMidpointX = textRect.left + (textRect.width / 2);
+      const lonelyLadyMidpointX = lonelyLadyRect.left + (lonelyLadyRect.width / 2);
+      const midpointRelation = lonelyLadyMidpointX - textMidpointX;
+
+      if (previousLonelyLadyMidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousLonelyLadyMidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousLonelyLadyMidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleTextBodyOnLonelyLadyCross();
+        }
+      }
+
+      previousLonelyLadyMidpointRelation = midpointRelation;
+    }
+
+    function updateSecondaryTextOnLonelyLadyMidpointCross() {
+      if (overlay.style.display !== 'block') {
+        previousSecondaryLonelyLadyMidpointRelation = null;
+        return;
+      }
+
+      const secondaryTextRect = secondaryTextBox.getBoundingClientRect();
+      const lonelyLadyRect = lonelyLadyVideo.getBoundingClientRect();
+
+      if (secondaryTextRect.width === 0 || lonelyLadyRect.width === 0) {
+        return;
+      }
+
+      const secondaryTextMidpointX = secondaryTextRect.left + (secondaryTextRect.width / 2);
+      const lonelyLadyMidpointX = lonelyLadyRect.left + (lonelyLadyRect.width / 2);
+      const midpointRelation = lonelyLadyMidpointX - secondaryTextMidpointX;
+
+      if (previousSecondaryLonelyLadyMidpointRelation !== null) {
+        const crossedMidpoint =
+          (previousSecondaryLonelyLadyMidpointRelation < 0 && midpointRelation >= 0) ||
+          (previousSecondaryLonelyLadyMidpointRelation > 0 && midpointRelation <= 0);
+
+        if (crossedMidpoint) {
+          toggleSecondaryTextBodyOnLonelyLadyCross();
+        }
+      }
+
+      previousSecondaryLonelyLadyMidpointRelation = midpointRelation;
+    }
+
+    document.addEventListener('wheel', (e) => {
+      if (overlay.style.display === 'block') {
+        e.preventDefault();
+        horizontalOffset += e.deltaX + e.deltaY;
+        videosContainer.style.transform = `translateX(${-horizontalOffset}px)`;
+        updateArtistStatementOnForeverMidpointCross();
+        updateTextOnBabysittingMidpointCross();
+        updateSecondaryTextOnBabysittingMidpointCross();
+        updateTextOnSuperDeathMidpointCross();
+        updateSecondaryTextOnSuperDeathMidpointCross();
+        updateTextOnLoveYourselfMidpointCross();
+        updateSecondaryTextOnLoveYourselfMidpointCross();
+        updateTextOnPeoplePersonsMidpointCross();
+        updateSecondaryTextOnPeoplePersonsMidpointCross();
+        updateTextOnJustPostCardsMidpointCross();
+        updateSecondaryTextOnJustPostCardsMidpointCross();
+        updateTextOnUniforming2MidpointCross();
+        updateSecondaryTextOnUniforming2MidpointCross();
+        updateTextOnTrainLove2MidpointCross();
+        updateSecondaryTextOnTrainLove2MidpointCross();
+        updateTextOnSorryPubMidpointCross();
+        updateSecondaryTextOnSorryPubMidpointCross();
+        updateTextOnAgingMidpointCross();
+        updateSecondaryTextOnAgingMidpointCross();
+        updateTextOnLonelyLadyMidpointCross();
+        updateSecondaryTextOnLonelyLadyMidpointCross();
+      }
+    }, { passive: false });
+
+    window.addEventListener('resize', updateArtistStatementOnForeverMidpointCross);
+    window.addEventListener('resize', updateTextOnBabysittingMidpointCross);
+    window.addEventListener('resize', updateSecondaryTextOnBabysittingMidpointCross);
+    window.addEventListener('resize', updateTextOnSuperDeathMidpointCross);
+    window.addEventListener('resize', updateSecondaryTextOnSuperDeathMidpointCross);
+    window.addEventListener('resize', updateTextOnLoveYourselfMidpointCross);
+    window.addEventListener('resize', updateSecondaryTextOnLoveYourselfMidpointCross);
+    window.addEventListener('resize', updateTextOnPeoplePersonsMidpointCross);
+    window.addEventListener('resize', updateSecondaryTextOnPeoplePersonsMidpointCross);
+    window.addEventListener('resize', updateTextOnJustPostCardsMidpointCross);
+    window.addEventListener('resize', updateSecondaryTextOnJustPostCardsMidpointCross);
+    window.addEventListener('resize', updateTextOnUniforming2MidpointCross);
+    window.addEventListener('resize', updateSecondaryTextOnUniforming2MidpointCross);
+    window.addEventListener('resize', updateTextOnTrainLove2MidpointCross);
+    window.addEventListener('resize', updateSecondaryTextOnTrainLove2MidpointCross);
+    window.addEventListener('resize', updateTextOnSorryPubMidpointCross);
+    window.addEventListener('resize', updateSecondaryTextOnSorryPubMidpointCross);
+    window.addEventListener('resize', updateTextOnAgingMidpointCross);
+    window.addEventListener('resize', updateSecondaryTextOnAgingMidpointCross);
+    window.addEventListener('resize', updateTextOnLonelyLadyMidpointCross);
+    window.addEventListener('resize', updateSecondaryTextOnLonelyLadyMidpointCross);
+  </script>
+</body>
+</html>
