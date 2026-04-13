@@ -7,65 +7,99 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="video-background">
-    <video id="video1" autoplay muted playsinline>
-      <source src="videos/Beggining.mp4" type="video/mp4" />
-    </video>
-    <video id="video2" muted loop playsinline preload="auto">
-      <source src="videos/VideoLoop.mp4" type="video/mp4" />
-    </video>
-  </div>
-  <div id="overlay-video" class="hidden">
-    <div id="overlay-backdrop"></div>
-    <div class="text-stack">
-      <div class="text-box">
-        november, 2025.
-        mixed media, collage, video art, digital painting.
-      </div>
-      <div class="text-box-secondary">
-        An exploration of purpose. Communicating how much time and effort goes into the sense of meaningless. How little work it takes to have an idea. Confronting the concept of difficulty as a construct and proposing time as the only truth in this case. Avi Franklin-Casseres collaborating in sound.
-      </div>
+  <div id="scene-root">
+    <div class="video-background">
+      <video id="video1" autoplay muted playsinline>
+        <source src="videos/Beggining.mp4" type="video/mp4" />
+      </video>
+      <video id="video2" muted loop playsinline preload="auto">
+        <source src="videos/VideoLoop.mp4" type="video/mp4" />
+      </video>
     </div>
-    <div class="text-box-artist-statement">
-      Using photos of facades of people and places, I create collages of scenery and characters. I piece together my scenes manually to express a range of thoughts and feelings. I use AI to animate parts, and compose everything manually. I decipher my feelings of the video into writings which explore world philosophy. Each video is an exercise of learning for me. I find comfort in communicating a larger idea into a visual form meaningful to anyone but myself. Leaving ‘thought’ to exist through this digital form of mockery and imagination, based on the unknown of our world. As an artist I am uncomfortable in knowingness. My videos explore fiction, but only through looking for ‘truth.’ It is the impossibility of finding truth that stretches my work further and further from a human perspective. I feel my humanity tested and at every step of being so close, and working so closely with these details of life, I can confront my perception and am left with nothing but questions.
-    </div>
-    <div id="videos-container">
-      <video id="forever-video" controls>
-        <source src="videos/Forever.mp4" type="video/mp4" />
-      </video>
-      <video id="babysitting-video" controls>
-        <source src="videos/Babysitting.mp4" type="video/mp4" />
-      </video>
-      <video id="superdeathforever-video" controls>
-        <source src="videos/SuperDeathForever.mp4" type="video/mp4" />
-      </video>
-      <video id="loveyourself-video" controls>
-        <source src="videos/LoveYourself.mp4" type="video/mp4" />
-      </video>
-      <video id="peoplepersons-video" controls>
-        <source src="videos/PeoplePersons.mp4" type="video/mp4" />
-      </video>
-      <video id="justpostcards-video" controls>
-        <source src="videos/JustPostCards.mp4" type="video/mp4" />
-      </video>
-      <video id="uniforming2-video" controls>
-        <source src="videos/Uniforming2.mp4" type="video/mp4" />
-      </video>
-      <video id="trainlove2-video" controls>
-        <source src="videos/TrainLove2.mp4" type="video/mp4" />
-      </video>
-      <video id="sorrpub-video" controls>
-        <source src="videos/SorryPub.mp4" type="video/mp4" />
-      </video>
-      <video id="aging-video" controls>
-        <source src="videos/Aging.mp4" type="video/mp4" />
-      </video>
-      <video id="lonelylady-video" controls>
-        <source src="videos/LonelyLadySheIs.mp4" type="video/mp4" />
-      </video>
+    <div id="overlay-video" class="hidden">
+      <div id="overlay-backdrop"></div>
+      <div class="text-stack">
+        <div class="text-box">
+          november, 2025.
+          mixed media, collage, video art, digital painting.
+        </div>
+        <div class="text-box-secondary">
+          An exploration of purpose. Communicating how much time and effort goes into the sense of meaningless. How little work it takes to have an idea. Confronting the concept of difficulty as a construct and proposing time as the only truth in this case. Avi Franklin-Casseres collaborating in sound.
+        </div>
+      </div>
+      <div class="text-box-artist-statement">
+        Using photos of facades of people and places, I create collages of scenery and characters. I piece together my scenes manually to express a range of thoughts and feelings. I use AI to animate parts, and compose everything manually. I decipher my feelings of the video into writings which explore world philosophy. Each video is an exercise of learning for me. I find comfort in communicating a larger idea into a visual form meaningful to anyone but myself. Leaving ‘thought’ to exist through this digital form of mockery and imagination, based on the unknown of our world. As an artist I am uncomfortable in knowingness. My videos explore fiction, but only through looking for ‘truth.’ It is the impossibility of finding truth that stretches my work further and further from a human perspective. I feel my humanity tested and at every step of being so close, and working so closely with these details of life, I can confront my perception and am left with nothing but questions.
+      </div>
+      <div id="videos-container">
+        <video id="forever-video" controls>
+          <source src="videos/Forever.mp4" type="video/mp4" />
+        </video>
+        <video id="babysitting-video" controls>
+          <source src="videos/Babysitting.mp4" type="video/mp4" />
+        </video>
+        <video id="superdeathforever-video" controls>
+          <source src="videos/SuperDeathForever.mp4" type="video/mp4" />
+        </video>
+        <video id="loveyourself-video" controls>
+          <source src="videos/LoveYourself.mp4" type="video/mp4" />
+        </video>
+        <video id="peoplepersons-video" controls>
+          <source src="videos/PeoplePersons.mp4" type="video/mp4" />
+        </video>
+        <video id="justpostcards-video" controls>
+          <source src="videos/JustPostCards.mp4" type="video/mp4" />
+        </video>
+        <video id="uniforming2-video" controls>
+          <source src="videos/Uniforming2.mp4" type="video/mp4" />
+        </video>
+        <video id="trainlove2-video" controls>
+          <source src="videos/TrainLove2.mp4" type="video/mp4" />
+        </video>
+        <video id="sorrpub-video" controls>
+          <source src="videos/SorryPub.mp4" type="video/mp4" />
+        </video>
+        <video id="aging-video" controls>
+          <source src="videos/Aging.mp4" type="video/mp4" />
+        </video>
+        <video id="lonelylady-video" controls>
+          <source src="videos/LonelyLadySheIs.mp4" type="video/mp4" />
+        </video>
+      </div>
     </div>
   </div>
   <script>
+    const sceneRoot = document.getElementById('scene-root');
+    let referenceWidth = window.innerWidth;
+    let referenceHeight = window.innerHeight;
+    const minFrameInches = 0.025;
+    const frameGrowthPerStep = 1.5;
+    const stepShrinkInches = 0.5;
+    const cssPixelsPerInch = 96;
+
+    function updateSceneScale() {
+      // Grow the reference stage if the viewport grows so extra area is revealed.
+      referenceWidth = Math.max(referenceWidth, window.innerWidth);
+      referenceHeight = Math.max(referenceHeight, window.innerHeight);
+
+      const widthShrinkPx = Math.max(0, referenceWidth - window.innerWidth);
+      const heightShrinkPx = Math.max(0, referenceHeight - window.innerHeight);
+      const shrinkInches = Math.max(widthShrinkPx, heightShrinkPx) / cssPixelsPerInch;
+      const shrinkProgress = shrinkInches / stepShrinkInches;
+      const dynamicMinFrameInches = minFrameInches * Math.pow(frameGrowthPerStep, shrinkProgress);
+      const minFramePx = dynamicMinFrameInches * cssPixelsPerInch;
+      const availableWidth = Math.max(1, window.innerWidth - (minFramePx * 2));
+      const availableHeight = Math.max(1, window.innerHeight - (minFramePx * 2));
+      const scaleX = availableWidth / referenceWidth;
+      const scaleY = availableHeight / referenceHeight;
+      const scale = Math.min(scaleX, scaleY, 1);
+
+      sceneRoot.style.width = `${referenceWidth}px`;
+      sceneRoot.style.height = `${referenceHeight}px`;
+      sceneRoot.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    }
+
+    updateSceneScale();
+
     const video1 = document.getElementById('video1');
     const video2 = document.getElementById('video2');
     const overlay = document.getElementById('overlay-video');
@@ -1079,6 +1113,7 @@
     window.addEventListener('resize', updateSecondaryTextOnAgingMidpointCross);
     window.addEventListener('resize', updateTextOnLonelyLadyMidpointCross);
     window.addEventListener('resize', updateSecondaryTextOnLonelyLadyMidpointCross);
+    window.addEventListener('resize', updateSceneScale);
   </script>
 </body>
 </html>
