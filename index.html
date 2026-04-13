@@ -12,7 +12,7 @@
       <video id="video1" autoplay muted playsinline>
         <source src="videos/Beggining.mp4" type="video/mp4" />
       </video>
-      <video id="video2" muted loop playsinline preload="auto">
+      <video id="video2" muted loop playsinline preload="metadata">
         <source src="videos/VideoLoop.mp4" type="video/mp4" />
       </video>
     </div>
@@ -31,38 +31,38 @@
         Using photos of facades of people and places, I create collages of scenery and characters. I piece together my scenes manually to express a range of thoughts and feelings. I use AI to animate parts, and compose everything manually. I decipher my feelings of the video into writings which explore world philosophy. Each video is an exercise of learning for me. I find comfort in communicating a larger idea into a visual form meaningful to anyone but myself. Leaving ‘thought’ to exist through this digital form of mockery and imagination, based on the unknown of our world. As an artist I am uncomfortable in knowingness. My videos explore fiction, but only through looking for ‘truth.’ It is the impossibility of finding truth that stretches my work further and further from a human perspective. I feel my humanity tested and at every step of being so close, and working so closely with these details of life, I can confront my perception and am left with nothing but questions.
       </div>
       <div id="videos-container">
-        <video id="forever-video" controls>
-          <source src="videos/Forever.mp4" type="video/mp4" />
+        <video id="forever-video" controls preload="none">
+          <source data-src="videos/Forever.mp4" type="video/mp4" />
         </video>
-        <video id="babysitting-video" controls>
-          <source src="videos/Babysitting.mp4" type="video/mp4" />
+        <video id="babysitting-video" controls preload="none">
+          <source data-src="videos/Babysitting.mp4" type="video/mp4" />
         </video>
-        <video id="superdeathforever-video" controls>
-          <source src="videos/SuperDeathForever.mp4" type="video/mp4" />
+        <video id="superdeathforever-video" controls preload="none">
+          <source data-src="videos/SuperDeathForever.mp4" type="video/mp4" />
         </video>
-        <video id="loveyourself-video" controls>
-          <source src="videos/LoveYourself.mp4" type="video/mp4" />
+        <video id="loveyourself-video" controls preload="none">
+          <source data-src="videos/LoveYourself.mp4" type="video/mp4" />
         </video>
-        <video id="peoplepersons-video" controls>
-          <source src="videos/PeoplePersons.mp4" type="video/mp4" />
+        <video id="peoplepersons-video" controls preload="none">
+          <source data-src="videos/PeoplePersons.mp4" type="video/mp4" />
         </video>
-        <video id="justpostcards-video" controls>
-          <source src="videos/JustPostCards.mp4" type="video/mp4" />
+        <video id="justpostcards-video" controls preload="none">
+          <source data-src="videos/JustPostCards.mp4" type="video/mp4" />
         </video>
-        <video id="uniforming2-video" controls>
-          <source src="videos/Uniforming2.mp4" type="video/mp4" />
+        <video id="uniforming2-video" controls preload="none">
+          <source data-src="videos/Uniforming2.mp4" type="video/mp4" />
         </video>
-        <video id="trainlove2-video" controls>
-          <source src="videos/TrainLove2.mp4" type="video/mp4" />
+        <video id="trainlove2-video" controls preload="none">
+          <source data-src="videos/TrainLove2.mp4" type="video/mp4" />
         </video>
-        <video id="sorrpub-video" controls>
-          <source src="videos/SorryPub.mp4" type="video/mp4" />
+        <video id="sorrpub-video" controls preload="none">
+          <source data-src="videos/SorryPub.mp4" type="video/mp4" />
         </video>
-        <video id="aging-video" controls>
-          <source src="videos/Aging.mp4" type="video/mp4" />
+        <video id="aging-video" controls preload="none">
+          <source data-src="videos/Aging.mp4" type="video/mp4" />
         </video>
-        <video id="lonelylady-video" controls>
-          <source src="videos/LonelyLadySheIs.mp4" type="video/mp4" />
+        <video id="lonelylady-video" controls preload="none">
+          <source data-src="videos/LonelyLadySheIs.mp4" type="video/mp4" />
         </video>
       </div>
     </div>
@@ -165,6 +165,81 @@
     let previousAgingMidpointRelation = null;
     let previousLonelyLadyMidpointRelation = null;
     let isArtistStatementVisible = true;
+    let hasStartedOverlayPreload = false;
+
+    const allOverlayVideos = [
+      foreverVideo, babysittingVideo, superDeathForeverVideo, loveYourselfVideo,
+      peoplePersonsVideo, justPostCardsVideo, uniforming2Video, trainLove2Video,
+      sorryPubVideo, agingVideo, lonelyLadyVideo
+    ];
+
+    function loadVideoSource(videoEl) {
+      const sourceEl = videoEl.querySelector('source');
+      if (!sourceEl) {
+        return false;
+      }
+
+      const sourceSrc = sourceEl.getAttribute('src');
+      const deferredSrc = sourceEl.dataset.src;
+      if (sourceSrc || !deferredSrc) {
+        return false;
+      }
+
+      sourceEl.setAttribute('src', deferredSrc);
+      videoEl.load();
+      return true;
+    }
+
+    function whenVideoReady(videoEl, onReady) {
+      if (videoEl.readyState >= 2) {
+        onReady();
+        return;
+      }
+
+      const onLoaded = () => {
+        videoEl.removeEventListener('loadeddata', onLoaded);
+        videoEl.removeEventListener('error', onLoaded);
+        onReady();
+      };
+
+      videoEl.addEventListener('loadeddata', onLoaded);
+      videoEl.addEventListener('error', onLoaded);
+      loadVideoSource(videoEl);
+    }
+
+    function preloadOverlayVideosSequentially(startIndex) {
+      if (startIndex >= allOverlayVideos.length) {
+        return;
+      }
+
+      const nextVideo = allOverlayVideos[startIndex];
+      whenVideoReady(nextVideo, () => {
+        preloadOverlayVideosSequentially(startIndex + 1);
+      });
+    }
+
+    function startOverlayPreloadSequence() {
+      if (hasStartedOverlayPreload) {
+        return;
+      }
+
+      hasStartedOverlayPreload = true;
+      // Load all overlay videos sequentially in the background without playing them.
+      preloadOverlayVideosSequentially(0);
+    }
+
+    function playFirstOverlayVideo() {
+      // Called only when the overlay actually opens.
+      const sourceEl = foreverVideo.querySelector('source');
+      if (sourceEl && !sourceEl.getAttribute('src') && sourceEl.dataset.src) {
+        // Not yet loaded — load it now then play.
+        whenVideoReady(foreverVideo, () => {
+          foreverVideo.play().catch(() => {});
+        });
+      } else {
+        foreverVideo.play().catch(() => {});
+      }
+    }
 
     function setArtistStatementVisibility(isVisible) {
       isArtistStatementVisible = isVisible;
@@ -175,6 +250,11 @@
     function toggleArtistStatementOnForeverCross() {
       setArtistStatementVisibility(!isArtistStatementVisible);
     }
+
+    // Start loading overlay videos in the background as soon as Beggining.mp4 plays.
+    video1.addEventListener('play', () => {
+      startOverlayPreloadSequence();
+    }, { once: true });
 
     video1.addEventListener('ended', () => {
       video2.currentTime = 0;
@@ -189,7 +269,8 @@
         if (overlay.style.display !== 'block') {
           overlay.style.display = 'block';
           overlay.classList.add('visible');
-          foreverVideo.play().catch(() => {});
+          startOverlayPreloadSequence();
+          playFirstOverlayVideo();
         }
       }
     });
@@ -308,12 +389,6 @@
 
       secondaryTextBox.textContent = secondaryDefaultText;
     }
-
-    const allOverlayVideos = [
-      foreverVideo, babysittingVideo, superDeathForeverVideo, loveYourselfVideo,
-      peoplePersonsVideo, justPostCardsVideo, uniforming2Video, trainLove2Video,
-      sorryPubVideo, agingVideo, lonelyLadyVideo
-    ];
 
     function pauseOtherVideos(exceptVideo) {
       allOverlayVideos.forEach(v => {
