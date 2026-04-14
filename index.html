@@ -28,8 +28,10 @@
         </div>
       </div>
       <div class="text-box-artist-statement">
-        Using photos of facades of people and places, I create collages of scenery and characters. I piece together my scenes manually to express a range of thoughts and feelings. I use AI to animate parts, and compose everything manually. I decipher my feelings of the video into writings which explore world philosophy. Each video is an exercise of learning for me. I find comfort in communicating a larger idea into a visual form meaningful to anyone but myself. Leaving ‘thought’ to exist through this digital form of mockery and imagination, based on the unknown of our world. As an artist I am uncomfortable in knowingness. My videos explore fiction, but only through looking for ‘truth.’
+        Using photos of facades of people and places, I create collages of scenery and characters. I piece together my scenes manually to express a range of thoughts and feelings. I use AI to animate parts, and compose everything manually. I sound design using recorded foley and sourced material. I express the video into writings which explore world philosophy. Each video is an exercise of learning for me. I enjoy communicating a larger idea into a visual form meaningful to anyone but myself. Leaving ‘thought’, to exist through this digital form of mockery and imagination based on the unknown of our world. I am uncomfortable in knowingness so my videos explore fiction, but only through looking for ‘truth.’
       </div>
+      <div class="text-box-locked-bottom-right text-box-locked-email" aria-hidden="true">emetmarrale@gmail.com</div>
+      <div class="text-box-locked-bottom-right" aria-hidden="true">@peoplepersonpersons</div>
       <div id="videos-container">
         <video id="forever-video" controls preload="none">
           <source data-src="videos/Forever.mp4" type="video/mp4" />
@@ -172,6 +174,21 @@
       peoplePersonsVideo, justPostCardsVideo, uniforming2Video, trainLove2Video,
       sorryPubVideo, agingVideo, lonelyLadyVideo
     ];
+    const allPageVideos = Array.from(document.querySelectorAll('video'));
+
+    function applyVideoProtection(videoEl) {
+      videoEl.setAttribute('controlsList', 'nodownload noplaybackrate noremoteplayback');
+      videoEl.setAttribute('disablePictureInPicture', '');
+      videoEl.setAttribute('draggable', 'false');
+      videoEl.addEventListener('contextmenu', event => {
+        event.preventDefault();
+      });
+      videoEl.addEventListener('dragstart', event => {
+        event.preventDefault();
+      });
+    }
+
+    allPageVideos.forEach(applyVideoProtection);
 
     function loadVideoSource(videoEl) {
       const sourceEl = videoEl.querySelector('source');

@@ -123,7 +123,7 @@ body {
   position: absolute;
   top: 2in;
   left: 1in;
-  width: 4in;
+  width: min(4.8in, calc(100% - 2in));
   color: rgba(0, 0, 0, 0.4);
   font-family: 'Unna Regular', serif;
   font-size: 15px;
@@ -135,7 +135,33 @@ body {
   transition: opacity 0.3s ease;
   pointer-events: none;
   background-color: rgba(255, 255, 255, 0.9);
-  padding: 0.25in;
+  padding: 0.3in;
+}
+
+.text-box-locked-bottom-right {
+  position: absolute;
+  right: 0.5in;
+  bottom: 0.5in;
+  width: auto;
+  max-width: 80vw;
+  color: #fff;
+  font-family: 'Unna Regular', serif;
+  font-size: 14px;
+  line-height: 1.35;
+  text-align: left;
+  white-space: pre-line;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.text-box-locked-email {
+  bottom: calc(0.5in + 1.35em);
+}
+
+#overlay-video.visible .text-box-locked-bottom-right {
+  opacity: 1;
 }
 
 .video-background {
