@@ -112,9 +112,9 @@ body.portrait-blocked #scene-root {
 
 .text-stack {
   position: absolute;
-  top: 2in;
+  top: clamp(1.2in, 10vh, 2in);
   right: 2in;
-  width: 2in;
+  width: clamp(1.5in, 22vh, 2in);
   z-index: 1;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -126,7 +126,7 @@ body.portrait-blocked #scene-root {
   position: absolute;
   color: #fff;
   font-family: 'Unna Regular', serif;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.35;
   text-align: left;
   white-space: pre-line;
@@ -134,12 +134,12 @@ body.portrait-blocked #scene-root {
 
 .text-box {
   top: 0;
-  width: 2in;
+  width: clamp(1.5in, 22vh, 2in);
 }
 
 .text-box-secondary {
-  top: 2in;
-  width: 1.7in;
+  top: clamp(1.4in, 24vh, 2in);
+  width: clamp(1.3in, 19vh, 1.7in);
 }
 
 .text-box-artist-statement {
@@ -149,7 +149,7 @@ body.portrait-blocked #scene-root {
   width: min(4.8in, calc(100% - 2in));
   color: rgba(0, 0, 0, 0.4);
   font-family: 'Unna Regular', serif;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.35;
   text-align: left;
   white-space: pre-line;
@@ -169,7 +169,7 @@ body.portrait-blocked #scene-root {
   max-width: 80vw;
   color: #fff;
   font-family: 'Unna Regular', serif;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.35;
   text-align: left;
   white-space: pre-line;
@@ -272,7 +272,7 @@ body.portrait-blocked #scene-root {
   left: 0;
   height: calc(100% - 2in);
   display: flex;
-  gap: 2in;
+  gap: 4in;
   z-index: 3;
 }
 
@@ -284,39 +284,39 @@ body.portrait-blocked #scene-root {
 }
 
 #forever-video {
-  margin-left: 1.8in;
+  margin-left: 3.6in;
 }
 
 @media (max-width: 1024px) and (orientation: landscape) {
   .text-stack {
     top: clamp(0.6rem, 5vh, 1.15in);
     right: clamp(0.6rem, 4vw, 1.15in);
-    width: min(2in, 30vw);
+    width: clamp(1.35in, 20vh, 1.85in);
   }
 
   .text-box {
-    width: min(2in, 30vw);
-    font-size: clamp(11px, 1.7vw, 14px);
+    width: clamp(1.35in, 20vh, 1.85in);
+    font-size: clamp(10px, 1.5vw, 13px);
   }
 
   .text-box-secondary {
-    top: clamp(1.3rem, 23vh, 1.75in);
-    width: min(1.7in, 25vw);
-    font-size: clamp(10px, 1.5vw, 14px);
+    top: clamp(1.1rem, 20vh, 1.6in);
+    width: clamp(1.15in, 17vh, 1.6in);
+    font-size: clamp(9px, 1.35vw, 12px);
   }
 
   .text-box-artist-statement {
     top: clamp(0.6rem, 5vh, 1.1in);
     left: clamp(0.6rem, 3vw, 0.9in);
     width: min(4.8in, 55vw);
-    font-size: clamp(11px, 1.7vw, 15px);
+    font-size: clamp(10px, 1.6vw, 14px);
     padding: clamp(0.2rem, 1.6vw, 0.25in);
   }
 
   .text-box-locked-bottom-right {
     right: clamp(0.4rem, 2.5vw, 0.5in);
     bottom: clamp(0.4rem, 2.5vw, 0.5in);
-    font-size: clamp(10px, 1.6vw, 14px);
+    font-size: clamp(9px, 1.45vw, 13px);
   }
 
   .text-box-locked-email {
@@ -326,11 +326,11 @@ body.portrait-blocked #scene-root {
   #videos-container {
     top: clamp(0.5rem, 7vh, 1in);
     height: calc(100% - clamp(1rem, 14vh, 2in));
-    gap: clamp(1rem, 8vw, 2in);
+    gap: clamp(2rem, 16vw, 4in);
   }
 
   #forever-video {
-    margin-left: clamp(0.8rem, 7vw, 1.8in);
+    margin-left: clamp(1.6rem, 14vw, 3.6in);
   }
 }
 
