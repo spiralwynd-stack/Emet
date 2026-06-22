@@ -113,10 +113,8 @@ body.portrait-blocked #scene-root {
 .text-stack {
   position: absolute;
   top: 2in;
-  bottom: 0;
   right: 2in;
   width: 2in;
-  transform: translateX(-75%);
   z-index: 1;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -128,7 +126,7 @@ body.portrait-blocked #scene-root {
   position: absolute;
   color: #fff;
   font-family: 'Unna Regular', serif;
-  font-size: 19.6px;
+  font-size: 14px;
   line-height: 1.35;
   text-align: left;
   white-space: pre-line;
@@ -141,23 +139,20 @@ body.portrait-blocked #scene-root {
 
 .text-box-secondary {
   top: 2in;
-  bottom: 0;
   width: 1.7in;
 }
 
 .text-box-artist-statement {
   position: absolute;
-  top: 1.2in;
-  left: 0.2in;
-  width: calc(100% - 2.4in);
-  height: calc((100% - 2.4in) * 4 / 5);
-  color: rgba(0, 0, 0, 0.7);
+  top: 2in;
+  left: 1in;
+  width: min(4.8in, calc(100% - 2in));
+  color: rgba(0, 0, 0, 0.4);
   font-family: 'Unna Regular', serif;
-  font-size: 19.6px;
+  font-size: 15px;
   line-height: 1.35;
   text-align: left;
   white-space: pre-line;
-  overflow-y: auto;
   z-index: 1;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -169,7 +164,7 @@ body.portrait-blocked #scene-root {
 .text-box-locked-bottom-right {
   position: absolute;
   right: 0.5in;
-  bottom: 0.1in;
+  bottom: 0.5in;
   width: auto;
   max-width: 80vw;
   color: #fff;
@@ -177,7 +172,7 @@ body.portrait-blocked #scene-root {
   font-size: 14px;
   line-height: 1.35;
   text-align: left;
-  white-space: nowrap;
+  white-space: pre-line;
   z-index: 1;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -185,8 +180,7 @@ body.portrait-blocked #scene-root {
 }
 
 .text-box-locked-email {
-  bottom: 0.1in;
-  right: calc(0.5in + 18ch);
+  bottom: calc(0.5in + 1.35em);
 }
 
 #overlay-video.visible .text-box-locked-bottom-right {
