@@ -77,8 +77,14 @@
     const frameGrowthPerStep = 1.5;
     const stepShrinkInches = 0.5;
     const cssPixelsPerInch = 96;
+    const isMobile = window.innerWidth <= 768;
 
     function updateSceneScale() {
+      // On mobile, let the CSS media queries handle scaling
+      if (isMobile) {
+        return;
+      }
+
       // Grow the reference stage if the viewport grows so extra area is revealed.
       referenceWidth = Math.max(referenceWidth, window.innerWidth);
       referenceHeight = Math.max(referenceHeight, window.innerHeight);
@@ -279,7 +285,7 @@
     document.body.addEventListener('click', () => {
       // Only allow clicking if 20+ seconds into Beginning.mp4 or if on the loop
       if (video1.currentTime >= 20 || video2.classList.contains('active')) {
-        if (overlay.style.display !== 'block') {
+        if (overlay.style.display !== 'block' || isMobile) {
           overlay.style.display = 'block';
           overlay.classList.add('visible');
           startOverlayPreloadSequence();
@@ -522,7 +528,7 @@
     }
 
     function updateTextOnBabysittingMidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousBabysittingMidpointRelation = null;
         return;
       }
@@ -552,7 +558,7 @@
     }
 
     function updateArtistStatementOnForeverMidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousArtistStatementForeverMidpointRelation = null;
         return;
       }
@@ -582,7 +588,7 @@
     }
 
     function updateSecondaryTextOnBabysittingMidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousSecondaryBabysittingMidpointRelation = null;
         return;
       }
@@ -612,7 +618,7 @@
     }
 
     function updateTextOnSuperDeathMidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousSuperDeathMidpointRelation = null;
         return;
       }
@@ -642,7 +648,7 @@
     }
 
     function updateSecondaryTextOnSuperDeathMidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousSecondarySuperDeathMidpointRelation = null;
         return;
       }
@@ -672,7 +678,7 @@
     }
 
     function updateTextOnLoveYourselfMidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousLoveYourselfMidpointRelation = null;
         return;
       }
@@ -702,7 +708,7 @@
     }
 
     function updateSecondaryTextOnLoveYourselfMidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousSecondaryLoveYourselfMidpointRelation = null;
         return;
       }
@@ -732,7 +738,7 @@
     }
 
     function updateTextOnPeoplePersonsMidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousPeoplePersonsMidpointRelation = null;
         return;
       }
@@ -762,7 +768,7 @@
     }
 
     function updateSecondaryTextOnPeoplePersonsMidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousSecondaryPeoplePersonsMidpointRelation = null;
         return;
       }
@@ -792,7 +798,7 @@
     }
 
     function updateTextOnJustPostCardsMidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousJustPostCardsMidpointRelation = null;
         return;
       }
@@ -822,7 +828,7 @@
     }
 
     function updateSecondaryTextOnJustPostCardsMidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousSecondaryJustPostCardsMidpointRelation = null;
         return;
       }
@@ -852,7 +858,7 @@
     }
 
     function updateTextOnUniforming2MidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousUniforming2MidpointRelation = null;
         return;
       }
@@ -882,7 +888,7 @@
     }
 
     function updateSecondaryTextOnUniforming2MidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousSecondaryUniforming2MidpointRelation = null;
         return;
       }
@@ -912,7 +918,7 @@
     }
 
     function updateTextOnTrainLove2MidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousTrainLove2MidpointRelation = null;
         return;
       }
@@ -942,7 +948,7 @@
     }
 
     function updateSecondaryTextOnTrainLove2MidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousSecondaryTrainLove2MidpointRelation = null;
         return;
       }
@@ -972,7 +978,7 @@
     }
 
     function updateTextOnSorryPubMidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousSorryPubMidpointRelation = null;
         return;
       }
@@ -1002,7 +1008,7 @@
     }
 
     function updateSecondaryTextOnSorryPubMidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousSecondarySorryPubMidpointRelation = null;
         return;
       }
@@ -1032,7 +1038,7 @@
     }
 
     function updateTextOnAgingMidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousAgingMidpointRelation = null;
         return;
       }
@@ -1062,7 +1068,7 @@
     }
 
     function updateSecondaryTextOnAgingMidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousSecondaryAgingMidpointRelation = null;
         return;
       }
@@ -1092,7 +1098,7 @@
     }
 
     function updateTextOnLonelyLadyMidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousLonelyLadyMidpointRelation = null;
         return;
       }
@@ -1122,7 +1128,7 @@
     }
 
     function updateSecondaryTextOnLonelyLadyMidpointCross() {
-      if (overlay.style.display !== 'block') {
+      if (overlay.style.display !== 'block' || isMobile) {
         previousSecondaryLonelyLadyMidpointRelation = null;
         return;
       }
