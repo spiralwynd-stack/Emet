@@ -72,24 +72,50 @@
       </div>
     </div>
   </div>
+  <div id="orientation-lock-overlay" aria-live="polite">
+    Rotate your phone to landscape to view this site.
+  </div>
   <script>
     const sceneRoot = document.getElementById('scene-root');
+    const orientationLockOverlay = document.getElementById('orientation-lock-overlay');
     let referenceWidth = window.innerWidth;
     let referenceHeight = window.innerHeight;
     const minFrameInches = 0.025;
     const frameGrowthPerStep = 1.5;
     const stepShrinkInches = 0.5;
     const cssPixelsPerInch = 96;
-    const isMobile = window.innerWidth <= 768;
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-    // Lock screen to landscape and hide browser UI on mobile
-    if (isMobile) {
-      // Lock orientation to landscape
+    function isPhoneViewport() {
+      return window.matchMedia('(max-width: 1024px)').matches && isTouchDevice;
+    }
+
+    function isLandscapeViewport() {
+      return window.matchMedia('(orientation: landscape)').matches;
+    }
+
+    function updateOrientationGate() {
+      const mustRotate = isPhoneViewport() && !isLandscapeViewport();
+      document.body.classList.toggle('portrait-blocked', mustRotate);
+      orientationLockOverlay.classList.toggle('visible', mustRotate);
+      return mustRotate;
+    }
+
+    function tryLockLandscapeOrientation() {
+      if (!isPhoneViewport()) {
+        return;
+      }
+
       if (screen.orientation && screen.orientation.lock) {
         screen.orientation.lock('landscape').catch(() => {});
       }
-      
-      // Request fullscreen to hide browser UI on first interaction
+    }
+
+    // Lock screen to landscape and hide browser UI on mobile
+    if (isPhoneViewport()) {
+      tryLockLandscapeOrientation();
+
+      // Request fullscreen to hide browser UI on first interaction.
       const requestFullscreen = () => {
         const elem = document.documentElement;
         if (elem.requestFullscreen) {
@@ -98,14 +124,15 @@
           elem.webkitRequestFullscreen();
         }
       };
-      
+
       document.addEventListener('click', requestFullscreen, { once: true });
       document.addEventListener('touchstart', requestFullscreen, { once: true });
     }
 
+    updateOrientationGate();
+
     function updateSceneScale() {
-      // On mobile, let the CSS media queries handle scaling
-      if (isMobile) {
+      if (updateOrientationGate()) {
         return;
       }
 
@@ -317,9 +344,13 @@
     });
 
     document.body.addEventListener('click', () => {
+      if (updateOrientationGate()) {
+        return;
+      }
+
       // Only allow clicking if 20+ seconds into Beginning.mp4 or if on the loop
       if (video1.currentTime >= 20 || video2.classList.contains('active')) {
-        if (overlay.style.display !== 'block' || isMobile) {
+        if (overlay.style.display !== 'block') {
           overlay.style.display = 'block';
           overlay.classList.add('visible');
           startOverlayPreloadSequence();
@@ -562,7 +593,7 @@
     }
 
     function updateTextOnBabysittingMidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousBabysittingMidpointRelation = null;
         return;
       }
@@ -592,7 +623,7 @@
     }
 
     function updateArtistStatementOnForeverMidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousArtistStatementForeverMidpointRelation = null;
         return;
       }
@@ -622,7 +653,7 @@
     }
 
     function updateSecondaryTextOnBabysittingMidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousSecondaryBabysittingMidpointRelation = null;
         return;
       }
@@ -652,7 +683,7 @@
     }
 
     function updateTextOnSuperDeathMidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousSuperDeathMidpointRelation = null;
         return;
       }
@@ -682,7 +713,7 @@
     }
 
     function updateSecondaryTextOnSuperDeathMidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousSecondarySuperDeathMidpointRelation = null;
         return;
       }
@@ -712,7 +743,7 @@
     }
 
     function updateTextOnLoveYourselfMidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousLoveYourselfMidpointRelation = null;
         return;
       }
@@ -742,7 +773,7 @@
     }
 
     function updateSecondaryTextOnLoveYourselfMidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousSecondaryLoveYourselfMidpointRelation = null;
         return;
       }
@@ -772,7 +803,7 @@
     }
 
     function updateTextOnPeoplePersonsMidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousPeoplePersonsMidpointRelation = null;
         return;
       }
@@ -802,7 +833,7 @@
     }
 
     function updateSecondaryTextOnPeoplePersonsMidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousSecondaryPeoplePersonsMidpointRelation = null;
         return;
       }
@@ -832,7 +863,7 @@
     }
 
     function updateTextOnJustPostCardsMidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousJustPostCardsMidpointRelation = null;
         return;
       }
@@ -862,7 +893,7 @@
     }
 
     function updateSecondaryTextOnJustPostCardsMidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousSecondaryJustPostCardsMidpointRelation = null;
         return;
       }
@@ -892,7 +923,7 @@
     }
 
     function updateTextOnUniforming2MidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousUniforming2MidpointRelation = null;
         return;
       }
@@ -922,7 +953,7 @@
     }
 
     function updateSecondaryTextOnUniforming2MidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousSecondaryUniforming2MidpointRelation = null;
         return;
       }
@@ -952,7 +983,7 @@
     }
 
     function updateTextOnTrainLove2MidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousTrainLove2MidpointRelation = null;
         return;
       }
@@ -982,7 +1013,7 @@
     }
 
     function updateSecondaryTextOnTrainLove2MidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousSecondaryTrainLove2MidpointRelation = null;
         return;
       }
@@ -1012,7 +1043,7 @@
     }
 
     function updateTextOnSorryPubMidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousSorryPubMidpointRelation = null;
         return;
       }
@@ -1042,7 +1073,7 @@
     }
 
     function updateSecondaryTextOnSorryPubMidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousSecondarySorryPubMidpointRelation = null;
         return;
       }
@@ -1072,7 +1103,7 @@
     }
 
     function updateTextOnAgingMidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousAgingMidpointRelation = null;
         return;
       }
@@ -1102,7 +1133,7 @@
     }
 
     function updateSecondaryTextOnAgingMidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousSecondaryAgingMidpointRelation = null;
         return;
       }
@@ -1132,7 +1163,7 @@
     }
 
     function updateTextOnLonelyLadyMidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousLonelyLadyMidpointRelation = null;
         return;
       }
@@ -1162,7 +1193,7 @@
     }
 
     function updateSecondaryTextOnLonelyLadyMidpointCross() {
-      if (overlay.style.display !== 'block' || isMobile) {
+      if (overlay.style.display !== 'block') {
         previousSecondaryLonelyLadyMidpointRelation = null;
         return;
       }
@@ -1191,57 +1222,76 @@
       previousSecondaryLonelyLadyMidpointRelation = midpointRelation;
     }
 
+    function runAllMidpointChecks() {
+      updateArtistStatementOnForeverMidpointCross();
+      updateTextOnBabysittingMidpointCross();
+      updateSecondaryTextOnBabysittingMidpointCross();
+      updateTextOnSuperDeathMidpointCross();
+      updateSecondaryTextOnSuperDeathMidpointCross();
+      updateTextOnLoveYourselfMidpointCross();
+      updateSecondaryTextOnLoveYourselfMidpointCross();
+      updateTextOnPeoplePersonsMidpointCross();
+      updateSecondaryTextOnPeoplePersonsMidpointCross();
+      updateTextOnJustPostCardsMidpointCross();
+      updateSecondaryTextOnJustPostCardsMidpointCross();
+      updateTextOnUniforming2MidpointCross();
+      updateSecondaryTextOnUniforming2MidpointCross();
+      updateTextOnTrainLove2MidpointCross();
+      updateSecondaryTextOnTrainLove2MidpointCross();
+      updateTextOnSorryPubMidpointCross();
+      updateSecondaryTextOnSorryPubMidpointCross();
+      updateTextOnAgingMidpointCross();
+      updateSecondaryTextOnAgingMidpointCross();
+      updateTextOnLonelyLadyMidpointCross();
+      updateSecondaryTextOnLonelyLadyMidpointCross();
+    }
+
+    function applyHorizontalOffset(nextOffset) {
+      horizontalOffset = Math.max(0, nextOffset);
+      videosContainer.style.transform = `translateX(${-horizontalOffset}px)`;
+      runAllMidpointChecks();
+    }
+
     document.addEventListener('wheel', (e) => {
-      if (overlay.style.display === 'block') {
+      if (overlay.style.display === 'block' && !updateOrientationGate()) {
         e.preventDefault();
-        horizontalOffset += e.deltaX + e.deltaY;
-        videosContainer.style.transform = `translateX(${-horizontalOffset}px)`;
-        updateArtistStatementOnForeverMidpointCross();
-        updateTextOnBabysittingMidpointCross();
-        updateSecondaryTextOnBabysittingMidpointCross();
-        updateTextOnSuperDeathMidpointCross();
-        updateSecondaryTextOnSuperDeathMidpointCross();
-        updateTextOnLoveYourselfMidpointCross();
-        updateSecondaryTextOnLoveYourselfMidpointCross();
-        updateTextOnPeoplePersonsMidpointCross();
-        updateSecondaryTextOnPeoplePersonsMidpointCross();
-        updateTextOnJustPostCardsMidpointCross();
-        updateSecondaryTextOnJustPostCardsMidpointCross();
-        updateTextOnUniforming2MidpointCross();
-        updateSecondaryTextOnUniforming2MidpointCross();
-        updateTextOnTrainLove2MidpointCross();
-        updateSecondaryTextOnTrainLove2MidpointCross();
-        updateTextOnSorryPubMidpointCross();
-        updateSecondaryTextOnSorryPubMidpointCross();
-        updateTextOnAgingMidpointCross();
-        updateSecondaryTextOnAgingMidpointCross();
-        updateTextOnLonelyLadyMidpointCross();
-        updateSecondaryTextOnLonelyLadyMidpointCross();
+        applyHorizontalOffset(horizontalOffset + e.deltaX + e.deltaY);
       }
     }, { passive: false });
 
-    window.addEventListener('resize', updateArtistStatementOnForeverMidpointCross);
-    window.addEventListener('resize', updateTextOnBabysittingMidpointCross);
-    window.addEventListener('resize', updateSecondaryTextOnBabysittingMidpointCross);
-    window.addEventListener('resize', updateTextOnSuperDeathMidpointCross);
-    window.addEventListener('resize', updateSecondaryTextOnSuperDeathMidpointCross);
-    window.addEventListener('resize', updateTextOnLoveYourselfMidpointCross);
-    window.addEventListener('resize', updateSecondaryTextOnLoveYourselfMidpointCross);
-    window.addEventListener('resize', updateTextOnPeoplePersonsMidpointCross);
-    window.addEventListener('resize', updateSecondaryTextOnPeoplePersonsMidpointCross);
-    window.addEventListener('resize', updateTextOnJustPostCardsMidpointCross);
-    window.addEventListener('resize', updateSecondaryTextOnJustPostCardsMidpointCross);
-    window.addEventListener('resize', updateTextOnUniforming2MidpointCross);
-    window.addEventListener('resize', updateSecondaryTextOnUniforming2MidpointCross);
-    window.addEventListener('resize', updateTextOnTrainLove2MidpointCross);
-    window.addEventListener('resize', updateSecondaryTextOnTrainLove2MidpointCross);
-    window.addEventListener('resize', updateTextOnSorryPubMidpointCross);
-    window.addEventListener('resize', updateSecondaryTextOnSorryPubMidpointCross);
-    window.addEventListener('resize', updateTextOnAgingMidpointCross);
-    window.addEventListener('resize', updateSecondaryTextOnAgingMidpointCross);
-    window.addEventListener('resize', updateTextOnLonelyLadyMidpointCross);
-    window.addEventListener('resize', updateSecondaryTextOnLonelyLadyMidpointCross);
-    window.addEventListener('resize', updateSceneScale);
+    let touchStartX = 0;
+
+    document.addEventListener('touchstart', event => {
+      if (event.touches.length === 1) {
+        touchStartX = event.touches[0].clientX;
+      }
+    }, { passive: true });
+
+    document.addEventListener('touchmove', event => {
+      if (overlay.style.display !== 'block' || updateOrientationGate() || event.touches.length !== 1) {
+        return;
+      }
+
+      const currentX = event.touches[0].clientX;
+      const deltaX = touchStartX - currentX;
+      touchStartX = currentX;
+
+      event.preventDefault();
+      applyHorizontalOffset(horizontalOffset + deltaX);
+    }, { passive: false });
+
+    document.body.addEventListener('click', tryLockLandscapeOrientation);
+    window.addEventListener('orientationchange', () => {
+      updateOrientationGate();
+      updateSceneScale();
+      runAllMidpointChecks();
+    });
+
+    window.addEventListener('resize', () => {
+      updateOrientationGate();
+      updateSceneScale();
+      runAllMidpointChecks();
+    });
   </script>
 </body>
 </html>
