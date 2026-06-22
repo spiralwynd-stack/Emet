@@ -31,10 +31,8 @@
         </div>
       </div>
       <div class="text-box-artist-statement">
-        Using photos of facades of people and places, I create collages of scenery and characters. I piece together my scenes manually to express a range of thoughts and feelings. I use AI to animate parts, and compose everything manually. I sound design using recorded foley and sourced material. I express the video into writings which explore world philosophy. Each video is an exercise of learning for me. I enjoy communicating a larger idea into a visual form meaningful to anyone but myself. Leaving ‘thought’, to exist through this digital form of mockery and imagination based on the unknown of our world. I am uncomfortable in knowingness so my videos explore fiction, but only through looking for ‘truth.’
+        Using photos of facades of people, places and things, I digitally collage scenery and characters. I piece together my scenes manually to express thoughts and feelings. I use AI to animate parts and compose everything manually. I design sound using recorded foley and sourced material. Each video is an exercise of learning for me. Leaving ‘thought’, to exist through this digital form of mockery and imagination. I am unsure on knowingness so my videos explore fiction, but only through looking for ‘truth.’
       </div>
-      <div class="text-box-locked-bottom-right text-box-locked-email" aria-hidden="true">emetmarrale@gmail.com</div>
-      <div class="text-box-locked-bottom-right" aria-hidden="true">@peoplepersonpersons</div>
       <div id="videos-container">
         <video id="forever-video" controls preload="none">
           <source data-src="videos/Forever.mp4" type="video/mp4" />
@@ -639,15 +637,9 @@
       const foreverMidpointX = foreverRect.left + (foreverRect.width / 2);
       const midpointRelation = foreverMidpointX - artistStatementMidpointX;
 
-      if (previousArtistStatementForeverMidpointRelation !== null) {
-        const crossedMidpoint =
-          (previousArtistStatementForeverMidpointRelation < 0 && midpointRelation >= 0) ||
-          (previousArtistStatementForeverMidpointRelation > 0 && midpointRelation <= 0);
-
-        if (crossedMidpoint) {
-          toggleArtistStatementOnForeverCross();
-        }
-      }
+      // Show when forever video is to the right, hide when it's to the left
+      const shouldBeVisible = midpointRelation > 0;
+      setArtistStatementVisibility(shouldBeVisible);
 
       previousArtistStatementForeverMidpointRelation = midpointRelation;
     }
@@ -1247,7 +1239,7 @@
     }
 
     function applyHorizontalOffset(nextOffset) {
-      horizontalOffset = Math.max(0, nextOffset);
+      horizontalOffset = nextOffset;
       videosContainer.style.transform = `translateX(${-horizontalOffset}px)`;
       runAllMidpointChecks();
     }
