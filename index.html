@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#000000" />
   <title>Home</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -79,6 +82,27 @@
     const cssPixelsPerInch = 96;
     const isMobile = window.innerWidth <= 768;
 
+    // Lock screen to landscape and hide browser UI on mobile
+    if (isMobile) {
+      // Lock orientation to landscape
+      if (screen.orientation && screen.orientation.lock) {
+        screen.orientation.lock('landscape').catch(() => {});
+      }
+      
+      // Request fullscreen to hide browser UI on first interaction
+      const requestFullscreen = () => {
+        const elem = document.documentElement;
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen().catch(() => {});
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen();
+        }
+      };
+      
+      document.addEventListener('click', requestFullscreen, { once: true });
+      document.addEventListener('touchstart', requestFullscreen, { once: true });
+    }
+
     function updateSceneScale() {
       // On mobile, let the CSS media queries handle scaling
       if (isMobile) {
@@ -125,6 +149,16 @@
     const textBox = document.querySelector('.text-box');
     const secondaryTextBox = document.querySelector('.text-box-secondary');
     const artistStatementBox = document.querySelector('.text-box-artist-statement');
+
+    // Ensure intro video plays on page load
+    window.addEventListener('load', () => {
+      video1.play().catch(() => {});
+    });
+    
+    // Also try to play immediately in case load event already fired
+    if (document.readyState === 'complete') {
+      video1.play().catch(() => {});
+    }
 
     const novemberText = 'november, 2025.\nmixed media, collage, video art, digital painting.';
     const augustText = 'august, 2025.\nmixed media, digital photography, collage, video art, digital painting, watercolour.';
