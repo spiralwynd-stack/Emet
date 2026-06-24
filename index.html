@@ -13,9 +13,9 @@
   <div id="scene-root">
     <div class="video-background">
       <video id="video1" autoplay muted playsinline>
-        <source src="videos/Beggining.mp4" type="video/mp4" />
+        <source src="videos/Beggining2.mp4" type="video/mp4" />
       </video>
-      <video id="video2" muted loop playsinline preload="none">
+      <video id="video2" muted loop playsinline preload="auto">
         <source src="videos/VideoLoop.mp4" type="video/mp4" />
       </video>
     </div>
@@ -175,6 +175,14 @@
     const secondaryTextBox = document.querySelector('.text-box-secondary');
     const artistStatementBox = document.querySelector('.text-box-artist-statement');
 
+    const introPlaybackRate = 1;
+    video1.defaultPlaybackRate = introPlaybackRate;
+    video1.playbackRate = introPlaybackRate;
+    video1.addEventListener('loadedmetadata', () => {
+      video1.defaultPlaybackRate = introPlaybackRate;
+      video1.playbackRate = introPlaybackRate;
+    });
+
     // Ensure intro video plays on page load
     window.addEventListener('load', () => {
       video1.play().catch(() => {});
@@ -333,12 +341,35 @@
       setArtistStatementVisibility(!isArtistStatementVisible);
     }
 
+    function transitionToLoopVideo() {
+      const activateLoop = () => {
+        video2.classList.add('active');
+        video1.classList.add('hidden');
+      };
+
+      const startLoopPlayback = () => {
+        video2.currentTime = 0;
+        const playPromise = video2.play();
+        if (playPromise && typeof playPromise.then === 'function') {
+          playPromise.then(activateLoop).catch(activateLoop);
+          return;
+        }
+
+        activateLoop();
+      };
+
+      if (video2.readyState >= 2) {
+        startLoopPlayback();
+        return;
+      }
+
+      video2.addEventListener('loadeddata', startLoopPlayback, { once: true });
+      video2.load();
+    }
+
     video1.addEventListener('ended', () => {
       startOverlayPreloadSequence();
-      video2.currentTime = 0;
-      video2.classList.add('active');
-      video2.play().catch(() => {});
-      video1.classList.add('hidden');
+      transitionToLoopVideo();
     });
 
     document.body.addEventListener('click', () => {
@@ -360,61 +391,80 @@
     const videosContainer = document.getElementById('videos-container');
     let horizontalOffset = 0;
 
+    function setPrimaryTextContent(multilineText) {
+      const [headline = '', ...detailLines] = multilineText.split('\n');
+      const detail = detailLines.join('\n');
+
+      textBox.innerHTML = '';
+
+      const headlineEl = document.createElement('span');
+      headlineEl.className = 'text-box-headline';
+      headlineEl.textContent = headline;
+      textBox.appendChild(headlineEl);
+
+      const detailEl = document.createElement('span');
+      detailEl.className = 'text-box-details';
+      detailEl.textContent = detail;
+      textBox.appendChild(detailEl);
+    }
+
     function applyTextBody(textBodyName) {
       currentTextBody = textBodyName;
 
       if (textBodyName === 'june') {
-        textBox.textContent = juneText;
+        setPrimaryTextContent(juneText);
         return;
       }
 
       if (textBodyName === 'agingAugust') {
-        textBox.textContent = agingAugustText;
+        setPrimaryTextContent(agingAugustText);
         return;
       }
 
       if (textBodyName === 'july') {
-        textBox.textContent = julyText;
+        setPrimaryTextContent(julyText);
         return;
       }
 
       if (textBodyName === 'december') {
-        textBox.textContent = decemberText;
+        setPrimaryTextContent(decemberText);
         return;
       }
 
       if (textBodyName === 'february') {
-        textBox.textContent = februaryText;
+        setPrimaryTextContent(februaryText);
         return;
       }
 
       if (textBodyName === 'october') {
-        textBox.textContent = octoberText;
+        setPrimaryTextContent(octoberText);
         return;
       }
 
       if (textBodyName === 'september') {
-        textBox.textContent = septemberText;
+        setPrimaryTextContent(septemberText);
         return;
       }
 
       if (textBodyName === 'april') {
-        textBox.textContent = aprilText;
+        setPrimaryTextContent(aprilText);
         return;
       }
 
       if (textBodyName === 'march') {
-        textBox.textContent = marchText;
+        setPrimaryTextContent(marchText);
         return;
       }
 
       if (textBodyName === 'august') {
-        textBox.textContent = augustText;
+        setPrimaryTextContent(augustText);
         return;
       }
 
-      textBox.textContent = novemberText;
+      setPrimaryTextContent(novemberText);
     }
+
+    applyTextBody(currentTextBody);
 
     function applySecondaryTextBody(textBodyName) {
       currentSecondaryTextBody = textBodyName;

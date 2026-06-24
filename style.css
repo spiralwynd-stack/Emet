@@ -115,7 +115,7 @@ body.portrait-blocked #scene-root {
   top: 2in;
   right: 2in;
   width: 2in;
-  z-index: 1;
+  z-index: 3;
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -124,7 +124,7 @@ body.portrait-blocked #scene-root {
 .text-box,
 .text-box-secondary {
   position: absolute;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.7);
   font-family: 'Unna Regular', serif;
   font-size: 14px;
   line-height: 1.35;
@@ -137,9 +137,22 @@ body.portrait-blocked #scene-root {
   width: 2in;
 }
 
+.text-box-headline {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.35);
+}
+
+.text-box-details {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: pre-line;
+}
+
 .text-box-secondary {
   top: 2in;
   width: 1.7in;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .text-box-artist-statement {
@@ -153,7 +166,7 @@ body.portrait-blocked #scene-root {
   line-height: 1.35;
   text-align: left;
   white-space: pre-line;
-  z-index: 1;
+  z-index: 3;
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -167,13 +180,13 @@ body.portrait-blocked #scene-root {
   bottom: 0.5in;
   width: auto;
   max-width: 80vw;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.7);
   font-family: 'Unna Regular', serif;
   font-size: 14px;
   line-height: 1.35;
   text-align: left;
   white-space: pre-line;
-  z-index: 1;
+  z-index: 3;
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -272,8 +285,8 @@ body.portrait-blocked #scene-root {
   left: 0;
   height: calc(100% - 2in);
   display: flex;
-  gap: 4in;
-  z-index: 3;
+    gap: 2in;
+  z-index: 4;
 }
 
 #videos-container video {
